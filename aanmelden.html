@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aanmelden – Schaak Online</title>
+  <meta name="theme-color" content="#65552a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/pion.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+  <header class="nav">
+    <a href="index.html"><img class="logo" src="img/logo.png" alt="Chess Logo"></a>
+    <a class="knop-nav" href="login.html">Inloggen</a>
+    <a class="knop-nav actief" href="aanmelden.html">Aanmelden</a>
+  </header>
+
+  <main class="">
+    <form class="paneel" id="aanmeldForm">
+      <h2 style="font-size: 30px; font-weight: 600; text-align: center;">Aanmelden</h2>
+      <p style="font-size: 14px; text-align: center; opacity: 0.85; margin: -6px 0 10px;">
+        Maak eerst een account aan in de MySQL database
+      </p>
+
+      <input class="veld" name="gebruiker" id="aanmeldGebruiker" placeholder="Gebruikersnaam (min. 3 tekens)" required minlength="3" autocomplete="username">
+      <input class="veld" name="wachtwoord" id="aanmeldWachtwoord" type="password" placeholder="Wachtwoord (min. 3 tekens)" required minlength="3" autocomplete="new-password">
+
+      <label class="upload">
+        <span>Upload foto (optioneel)</span>
+        <div class="vak"><img id="voorbeeld" src="img/pion.png" alt=""></div>
+        <input type="file" accept="image/*" id="foto">
+      </label>
+
+      <p class="fout" id="fout" style="text-align: center; font-size: 14px; min-height: 20px;"></p>
+
+      <button class="knop" type="submit" style="width: 100%;">Account Aanmaken</button>
+
+      <p style="font-size: 14px; margin-top: 10px; text-align: center;">
+        Heb je al een account in de database? 
+        <a href="login.html" style="color: #ffd54a; text-decoration: underline; font-weight: 600;">Hier inloggen</a>
+      </p>
+    </form>
+  </main>
+
+  <div class="melding" id="melding"></div>
+  <script src="app.js"></script>
+</body>
+</html>

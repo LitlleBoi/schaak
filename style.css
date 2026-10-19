@@ -1,0 +1,145 @@
+:root{
+  --groen:#5c8c44; --bruin:#65552a; --bruin-donker:#4d4020;
+  --olijf:#7a7a30; --lime:#99a027; --veld:#6f7038; --veld-tekst:#bdbd96;
+  --pion-bg:#3a3a22; --rood:#ff0000; --lichtgroen:#00ff00;
+}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Inter',system-ui,sans-serif;color:#fff;min-height:100vh;
+  background:var(--groen) url(img/patroon.png) center top/924px auto repeat}
+body.bord{background:url(img/achtergrond.png) 0 0/640px 640px repeat}
+.nav{background:var(--bruin);display:flex;justify-content:center;align-items:center;
+  gap:clamp(12px,3vw,28px);padding:12px 16px;position:relative;min-height:62px;
+  box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.nav .logo{position:absolute;left:24px;top:50%;transform:translateY(-50%);height:34px}
+.nav a.knop-nav{background:var(--olijf);color:#fff;text-decoration:none;font-size:20px;
+  padding:6px 16px;border-radius:30px;box-shadow:0 3px 6px rgba(0,0,0,.35);transition:.15s}
+.nav a.knop-nav:hover,.nav a.actief{background:var(--lime)}
+main{display:flex;flex-direction:column;align-items:center;padding:28px 16px 48px;gap:28px}
+.paneel{background:var(--bruin);width:100%;max-width:528px;padding:28px 60px 30px;
+  display:flex;flex-direction:column;align-items:center;gap:18px}
+.veld,.upload{width:100%;background:var(--veld);border-radius:28px;border:0;
+  box-shadow:inset 0 0 12px rgba(0,0,0,.35),0 3px 6px rgba(0,0,0,.25)}
+.veld{height:68px;padding:0 38px;font:inherit;font-size:25px;color:#fff}
+.veld::placeholder{color:var(--veld-tekst)}
+.veld:focus{outline:3px solid var(--lime)}
+.upload{display:flex;gap:14px;padding:16px;align-items:flex-start;cursor:pointer;min-height:205px}
+.upload span{color:var(--veld-tekst);font-size:25px;padding:0 0 0 24px;flex:1}
+.upload .vak{width:176px;height:170px;background:var(--pion-bg);border-radius:20px;
+  display:grid;place-items:center;overflow:hidden;box-shadow:inset 0 0 10px #000a}
+.upload .vak img{width:88px;height:auto}
+.upload .vak img.foto{width:100%;height:100%;object-fit:cover}
+.upload input{display:none}
+.knop{background:var(--lime);color:#fff;border:0;border-radius:40px;font:inherit;font-size:25px;
+  padding:8px 34px;min-width:138px;text-align:center;text-decoration:none;cursor:pointer;
+  box-shadow:0 3px 7px rgba(0,0,0,.45);transition:.15s}
+.knop:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.start .paneel{flex-direction:row;justify-content:space-around;padding:62px 40px;max-width:528px}
+.fout{color:#ffb4a8;font-size:15px;min-height:18px}
+/* spelen / vrienden / profiel */
+.kaart{background:var(--bruin);width:100%;max-width:300px;padding:14px;border-radius:6px;
+  box-shadow:0 4px 10px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;gap:14px}
+.kaart h2{background:var(--olijf);width:100%;text-align:center;font-weight:400;font-size:36px;
+  padding:8px;border-radius:22px;box-shadow:0 3px 6px rgba(0,0,0,.35)}
+.tijden{display:flex;gap:10px;justify-content:center}
+.klein{white-space:nowrap;background:var(--olijf);color:#fff;border:0;border-radius:24px;font:inherit;font-size:18px;
+  padding:8px 20px;cursor:pointer;box-shadow:0 3px 6px rgba(0,0,0,.35);transition:.15s}
+.klein:hover{background:var(--lime)}
+.klein.lime{background:var(--lime)}
+.rij{background:var(--veld);width:100%;border-radius:20px;padding:12px;display:flex;gap:12px;
+  box-shadow:inset 0 0 10px rgba(0,0,0,.35)}
+.rij .pion{width:96px;height:96px;background:var(--pion-bg);border-radius:14px;display:grid;
+  place-items:center;flex:none;overflow:hidden}
+.rij .pion img{width:56px}
+.rij .pion img.foto{width:100%;height:100%;object-fit:cover}
+.rij .info{flex:1;text-align:right;font-size:12px;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.rij .info .klein{font-size:15px;padding:5px 22px;width:100%;max-width:150px;text-align:center}
+.gesch{display:flex;flex-direction:column;align-items:center;gap:8px;flex:none}
+.punten{display:flex;align-items:center;gap:10px;font-size:20px}
+.teken{width:34px;height:34px;display:grid;place-items:center;color:#000;font-weight:900;font-size:28px;line-height:1}
+.min{background:var(--rood)}.plus{background:var(--lichtgroen)}
+.elo{color:#fff;font-size:12px}
+.profiel{align-items:center;text-align:center}
+.profiel .groot{width:176px;height:170px}
+.profiel .naam{font-size:30px}
+.profiel .statrij{display:flex;gap:16px;width:100%;justify-content:space-around}
+.stat{background:var(--veld);border-radius:20px;padding:12px 16px;flex:1}
+.stat b{display:block;font-size:26px}
+.melding{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--bruin-donker);
+  padding:10px 22px;border-radius:30px;box-shadow:0 4px 12px #0008;opacity:0;pointer-events:none;transition:.25s}
+.melding.zie{opacity:1}
+@media(max-width:700px){
+  body.bord{background-size:320px 320px}
+  .klein{font-size:16px;padding:6px 14px}
+  .nav a.knop-nav{font-size:11px;padding:3px 7px}.nav .logo{height:16px;margin:0}
+  .nav .logo{position:static;transform:none;height:24px;margin-right:4px}
+  .nav{gap:6px;padding:8px 6px;min-height:0}
+  .paneel{padding:22px 22px}.veld{height:56px;font-size:20px;padding:0 24px}
+  .upload span{font-size:20px;padding:0}.upload .vak{width:120px;height:120px}.upload{min-height:150px}
+  .knop{font-size:20px}.start .paneel{padding:40px 16px;gap:10px}
+  .start .knop{font-size:18px;padding:8px 18px;min-width:0}
+}
+
+/* schaakpagina */
+body.spel{background:var(--groen);--bord:max(300px,min(520px,calc(100vh - 150px)))}
+.spel main{display:grid;grid-template-columns:1fr var(--bord) 1fr;gap:28px;
+  align-items:start;justify-items:center;padding:14px 24px 24px;max-width:1300px;margin:0 auto}
+.zijpaneel{background:var(--bruin);border-radius:10px;width:100%;max-width:300px;padding:14px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;box-shadow:0 4px 10px rgba(0,0,0,.35)}
+.zijpaneel h2{background:var(--olijf);font-weight:400;font-size:30px;padding:6px 26px;border-radius:30px;
+  box-shadow:0 3px 6px rgba(0,0,0,.35)}
+.kolom{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%}
+.chatlijst{width:100%;height:240px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.chatlijst p{background:var(--veld);padding:6px 10px;border-radius:12px;align-self:flex-start;max-width:90%}
+.chatlijst p.ik{align-self:flex-end;background:var(--olijf)}
+.chatvorm{display:flex;gap:8px;width:100%}
+.chatvorm input{flex:1;min-width:0;background:var(--veld);border:0;border-radius:20px;padding:8px 14px;
+  font:inherit;font-size:15px;color:#fff;box-shadow:inset 0 0 8px #0006}
+.chatvorm input::placeholder{color:var(--veld-tekst)}
+.chatvorm .klein{background:var(--lime);padding:6px 16px;font-size:15px}
+.bordkolom{width:100%;max-width:min(520px, calc(100vh - 180px));display:flex;flex-direction:column;align-items:stretch}
+.speler{background:#b37400;display:flex;justify-content:space-between;align-items:center;
+  padding:6px 8px;font-size:12px;font-weight:600}
+.speler small{font-weight:400;opacity:.6}
+.speler .naam{display:flex;gap:6px;align-items:center}
+.speler .info{background:#222;border:0;color:#fff;width:24px;height:24px;border-radius:4px;font:700 13px serif}
+.speler .klok{background:#3b2d00;padding:3px 10px;border-radius:4px;font-size:14px}
+.speler.actief .klok{background:#fff;color:#000}
+.schaakbord{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);aspect-ratio:1/1;width:100%;box-shadow:0 4px 14px rgba(0,0,0,0.4);border-radius:2px;overflow:hidden;box-sizing:border-box}
+.schaakbord .veld-vak{background:#f1f4fb;position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;user-select:none;-webkit-user-select:none;width:100%;height:100%;min-width:0;min-height:0;box-sizing:border-box;overflow:hidden}
+.schaakbord .veld-vak.donker{background:#43a047}
+.schaakbord .veld-vak.gekozen{background-color:#fff078 !important}
+.schaakbord .veld-vak.laatste-zet{background-color:#d7e868 !important}
+.schaakbord .veld-vak.schaak{background-color:#ff5252 !important}
+.schaakbord .veld-vak img.stuk{width:82%;height:82%;max-width:82%;max-height:82%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.35))}
+
+/* Mogelijke zetten stip / cirkel */
+.schaakbord .veld-vak .mogelijke-zet{position:absolute;width:28%;height:28%;border-radius:50%;background:rgba(0,0,0,0.25);pointer-events:none;z-index:2}
+.schaakbord .veld-vak.heeft-stuk .mogelijke-zet{width:84%;height:84%;border-radius:50%;background:transparent;border:5px solid rgba(0,0,0,0.28);box-sizing:border-box}
+
+.zetten{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 18px;font-size:11px;padding:0 14px;width:100%;
+  max-height:260px;overflow-y:auto;align-content:start}
+.zetten .nr{color:#bdbd96;text-align:right}
+.rood,.geel{border:0;border-radius:40px;font:inherit;font-size:22px;color:#fff;padding:14px 38px;cursor:pointer;
+  box-shadow:0 3px 7px rgba(0,0,0,.45);transition:.15s}
+.rood{background:#b81c0a}.geel{background:#d98c0b}.rood:hover,.geel:hover{filter:brightness(1.12)}
+
+/* Spel Overlays (Wachten op tegenstander & Einde Spel) */
+.spel-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
+.overlay-kaart{background:var(--bruin);border:2px solid var(--lime);border-radius:18px;padding:28px;max-width:440px;width:100%;text-align:center;box-shadow:0 12px 32px rgba(0,0,0,0.6);animation:popIn .25s ease-out}
+.overlay-kaart h2{font-size:24px;margin-bottom:8px;color:#fff}
+.laad-animatie{font-size:44px;margin-bottom:12px;animation:spin 2s linear infinite;display:inline-block}
+
+@keyframes popIn{
+  from{transform:scale(0.85);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+@keyframes spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+@media(max-width:900px){
+  .spel main{grid-template-columns:minmax(0,1fr);padding:10px}
+  .bordkolom{order:-1;width:min(520px,100%)}
+  .zijpaneel{max-width:520px}.kolom{order:2}
+  .zijpaneel h2{font-size:22px}.rood,.geel{font-size:18px;padding:10px 26px}
+}

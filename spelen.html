@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spelen – Schaak Online</title>
+  <meta name="theme-color" content="#65552a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/pion.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bord">
+  <header class="nav">
+    <a href="index.html"><img class="logo" src="img/logo.png" alt="Chess Logo"></a>
+    <a class="knop-nav actief" href="spelen.html">Spelen</a>
+    <a class="knop-nav" href="vrienden.html">Vrienden</a>
+    <a class="knop-nav" href="profiel.html">Profiel</a>
+    <a class="knop-nav" href="#" id="uitloggen">Uitloggen</a>
+  </header>
+
+  <main>
+    <!-- Kies je speeltijd: 3 minuten of 10 minuten -->
+    <section class="kaart">
+      <h2>Snel Spelen</h2>
+      <p style="font-size:14px; text-align:center; opacity:0.9;">Kies speeltijd (beide spelers krijgen dezelfde tijd):</p>
+      <div class="tijden" style="width:100%; display:flex; justify-content:center; gap:8px;">
+        <button class="klein lime" data-tijd="3" style="flex:1; font-weight:600;">⚡ 3 min</button>
+        <button class="klein" data-tijd="5" style="flex:1;">5 min</button>
+        <button class="klein lime" data-tijd="10" style="flex:1; font-weight:600;">⏱️ 10 min</button>
+      </div>
+      <button class="klein" data-tijd="0" style="width:100%; font-size:16px;">Willekeurige Tegenstander</button>
+    </section>
+
+    <!-- Samen spelen via kamercode -->
+    <section class="kaart">
+      <h2>Speel Met Vriend</h2>
+      <p style="font-size:13px; text-align:center; opacity:0.85;">Speel tegen iemand op een ander scherm:</p>
+      <button class="klein lime" id="maakKamerKnop" style="width:100%; font-size:16px;">➕ Maak Nieuwe Privékamer</button>
+      
+      <div style="display:flex; gap:8px; width:100%; margin-top:4px;">
+        <input id="kamerCodeInvoer" class="veld" style="height:44px; font-size:16px; padding:0 14px; border-radius:18px; text-transform:uppercase;" placeholder="Code (bv. A7X9K2)">
+        <button class="klein" id="joinKamerKnop" style="padding:0 16px;">Join</button>
+      </div>
+    </section>
+
+    <section class="kaart">
+      <h2>Vrienden</h2>
+      <div id="vriendenLijst" class="lijst"></div>
+    </section>
+
+    <section class="kaart">
+      <h2>Geschiedenis</h2>
+      <div id="geschiedenis" class="lijst"></div>
+    </section>
+  </main>
+
+  <div class="melding" id="melding"></div>
+  <script src="app.js"></script>
+  <script>vulSpelen()</script>
+</body>
+</html>

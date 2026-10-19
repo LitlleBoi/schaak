@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Partij – Schaakspel Online</title>
+  <meta name="theme-color" content="#65552a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/pion.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="spel">
+  <!-- Navigatiebalk -->
+  <header class="nav">
+    <a href="index.html"><img class="logo" src="img/logo.png" alt="Chess Logo"></a>
+    <a class="knop-nav actief" href="spelen.html">Spelen</a>
+    <a class="knop-nav" href="vrienden.html">Vrienden</a>
+    <a class="knop-nav" href="profiel.html">Profiel</a>
+    <a class="knop-nav" href="#" id="uitloggen">Uitloggen</a>
+  </header>
+
+  <main>
+    <!-- Linker kolom: Live Chat & Opgeven -->
+    <section class="kolom">
+      <div class="zijpaneel">
+        <h2>Chat</h2>
+        <div class="chatlijst" id="chat">
+          <p>Welkom bij het spel! Veel succes!</p>
+        </div>
+        <form class="chatvorm" id="chatForm">
+          <input id="chatInput" placeholder="Stuur een bericht..." autocomplete="off">
+          <button class="klein" type="submit">Stuur</button>
+        </form>
+      </div>
+      <button class="rood" id="opgeven">Opgeven</button>
+    </section>
+
+    <!-- Midden kolom: Het Schaakbord en de Twee Spelers -->
+    <section class="bordkolom">
+      <!-- Tegenstander balk (boven) -->
+      <div class="speler" id="spelerBoven">
+        <span class="naam">
+          <button class="info" aria-label="Info" type="button">i</button>
+          <b id="naamBoven">Tegenstander zoeken...</b>
+          <small id="eloBoven">(1200)</small>
+        </span>
+        <span class="klok" id="klokBoven">--:--</span>
+      </div>
+
+      <!-- Het 8x8 Schaakbord (wordt dynamisch gevuld door game.js) -->
+      <div class="schaakbord" id="bord"></div>
+
+      <!-- Jouw eigen spelersbalk (onder) -->
+      <div class="speler actief" id="spelerOnder">
+        <span class="naam">
+          <button class="info" aria-label="Info" type="button">i</button>
+          <b id="naamOnder">Jij</b>
+          <small id="eloOnder">(1200)</small>
+        </span>
+        <span class="klok" id="klokOnder">--:--</span>
+      </div>
+    </section>
+
+    <!-- Rechter kolom: Zetgeschiedenis & Remise (Gelijkspel) -->
+    <section class="kolom">
+      <div class="zijpaneel">
+        <h2>Zetgeschiedenis</h2>
+        <div class="zetten" id="zettenLijst"></div>
+      </div>
+      <button class="geel" id="gelijkspel">Remise aanbieden</button>
+    </section>
+  </main>
+
+  <!-- Melding toast onderaan het scherm -->
+  <div class="melding" id="melding"></div>
+
+  <!-- JavaScript bestanden: schaakregels (chess.js) en WebSocket multiplayer (game.js) -->
+  <script src="chess.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

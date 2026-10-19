@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inloggen – Schaak Online</title>
+  <meta name="theme-color" content="#65552a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="img/pion.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+  <header class="nav">
+    <a href="index.html"><img class="logo" src="img/logo.png" alt="Chess Logo"></a>
+    <a class="knop-nav" href="login.html">Inloggen</a>
+    <a class="knop-nav" href="aanmelden.html">Aanmelden</a>
+  </header>
+
+  <main class="">
+    <form class="paneel" id="loginForm" autocomplete="on">
+      <h2 style="font-size: 30px; font-weight: 600; text-align: center;">Inloggen</h2>
+      <p style="font-size: 14px; text-align: center; opacity: 0.85; margin: -6px 0 10px;">
+        Log in met je geregistreerde MySQL-account
+      </p>
+
+      <!-- Melding als je net bent aangemeld -->
+      <div id="succesMelding" style="display:none; background:#2e7d32; color:#fff; padding:10px 14px; border-radius:12px; font-size:14px; text-align:center; width:100%;">
+        ✅ Account succesvol aangemaakt! Vul je wachtwoord in om in te loggen.
+      </div>
+
+      <input class="veld" name="gebruiker" id="loginGebruiker" placeholder="Gebruikersnaam" required autocomplete="username">
+      <input class="veld" name="wachtwoord" id="loginWachtwoord" type="password" placeholder="Wachtwoord" required autocomplete="current-password">
+
+      <p class="fout" id="fout" style="text-align: center; font-size: 14px; min-height: 20px;"></p>
+
+      <button class="knop" type="submit" style="width: 100%;">Inloggen</button>
+
+      <p style="font-size: 14px; margin-top: 10px; text-align: center;">
+        Nog geen account? 
+        <a href="aanmelden.html" style="color: #ffd54a; text-decoration: underline; font-weight: 600;">Eerst hier aanmelden</a>
+      </p>
+    </form>
+  </main>
+
+  <div class="melding" id="melding"></div>
+  <script src="app.js"></script>
+  <script>
+    // Als de gebruiker net van de aanmeldpagina komt
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('aangemeld') === '1') {
+      const succesDiv = document.getElementById('succesMelding');
+      if (succesDiv) succesDiv.style.display = 'block';
+      const opgeslagenNaam = sessionStorage.getItem('pasAangemeld');
+      if (opgeslagenNaam) {
+        const veld = document.getElementById('loginGebruiker');
+        if (veld) veld.value = opgeslagenNaam;
+        const wwVeld = document.getElementById('loginWachtwoord');
+        if (wwVeld) wwVeld.focus();
+      }
+    }
+  </script>
+</body>
+</html>
