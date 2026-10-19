@@ -8,7 +8,7 @@
 // 4. Zetten en chatberichten real-time versturen via WebSockets
 // 5. De 3 minuten of 10 minuten klokken synchroon laten lopen
 //
-// UITLEG VOOR DE PRESENTATIE:
+// UITLEG VOOR DE PRESENTATIE: 
 // - WebSockets zorgen voor een constante, directe 2-weg verbinding met de server.
 // - Zodra jij een zet doet, sturen we een JSON-berichtje naar de server.
 // - De server stuurt dit direct door naar het scherm van je tegenstander!
